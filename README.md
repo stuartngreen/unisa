@@ -28,4 +28,4 @@ _Purpose:_ To introduce students to the fundamentals of databases and database m
 
 ##### **[WebGL]**
 **COS3712 - Computer Graphics**<br>
-_Purpose:_ To enable a student to understand and apply the basic principles and techniques of modern computer graphics.
+_Purpose:_ To enable a student to understand and apply the basic principles and techniques of modern computer graphics. You can view my assignment project [here](https://stuartngreen.github.io/unisa/webgl-room-scene/).
