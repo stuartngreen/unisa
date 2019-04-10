@@ -1,0 +1,232 @@
+
+CREATE DATABASE tvnw;
+
+USE tvnw
+
+CREATE TABLE member (
+	member_id INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(100) NOT NULL,
+	surname VARCHAR(100) NOT NULL,
+	callsign VARCHAR(50) NOT NULL,
+	contact_number INT NOT NULL,
+	address VARCHAR(255),
+	date_joined DATE NOT NULL,
+	photo VARCHAR(255),
+	id_number BIGINT NOT NULL,
+	status TINYINT(1) NOT NULL,
+	PRIMARY KEY (member_id)
+);
+
+CREATE TABLE incident_type (
+	type_id INT NOT NULL AUTO_INCREMENT,
+	description VARCHAR(255) NOT NULL,
+	PRIMARY KEY (type_id)
+);
+
+CREATE TABLE incident (
+    incident_id INT NOT NULL AUTO_INCREMENT,
+    date_time DATETIME NOT NULL,
+    type_id INT NOT NULL,
+	location_street VARCHAR(100) NOT NULL,
+	location_number SMALLINT NOT NULL,
+	gps_x DOUBLE,
+	gps_y DOUBLE,
+	reported_by_member_id INT NOT NULL,
+	notes TEXT,
+	PRIMARY KEY (incident_id),
+	FOREIGN KEY (type_id) REFERENCES incident_type(type_id),
+	FOREIGN KEY (reported_by_member_id) REFERENCES member(member_id)
+);
+
+CREATE TABLE patrol_area (
+	area_id INT NOT NULL AUTO_INCREMENT,
+	description VARCHAR(100) NOT NULL,
+	PRIMARY KEY (area_id)
+);
+
+CREATE TABLE patrol_time (
+	time_id INT NOT NULL AUTO_INCREMENT,
+	week_day VARCHAR(50) NOT NULL,
+	time_start TIME NOT NULL,
+	time_end TIME NOT NULL,
+	PRIMARY KEY (time_id)
+);
+
+CREATE TABLE patrol (
+	member_id INT NOT NULL,
+	time_id INT NOT NULL,
+	area_id INT NOT NULL,
+	PRIMARY KEY (member_id, time_id),
+	FOREIGN KEY (member_id) REFERENCES member(member_id),
+	FOREIGN KEY (time_id) REFERENCES patrol_time(time_id),
+	FOREIGN KEY (area_id) REFERENCES patrol_area(area_id)
+);
+
+INSERT INTO member
+	(name, surname, callsign, contact_number, address, date_joined, photo, id_number, status)
+VALUES
+	('Stuart', 'Green', 'The Fuzz', 0839871234, '153 Blaauwberg Road', '2016-02-15', 'C:/stu.jpg', 7901181234082, 1)
+;
+
+INSERT INTO patrol_time
+	(week_day, time_start, time_end)
+VALUES
+	('Sunday', '00:00', '02:00'),
+	('Sunday', '02:00', '04:00'),
+	('Sunday', '04:00', '06:00'),
+	('Sunday', '06:00', '08:00'),
+	('Sunday', '08:00', '10:00'),
+	('Sunday', '10:00', '12:00'),
+	('Sunday', '12:00', '14:00'),
+	('Sunday', '14:00', '16:00'),
+	('Sunday', '16:00', '18:00'),
+	('Sunday', '18:00', '20:00'),
+	('Sunday', '20:00', '22:00'),
+	('Sunday', '22:00', '00:00'),
+	('Monday', '00:00', '02:00'),
+	('Monday', '02:00', '04:00'),
+	('Monday', '04:00', '06:00'),
+	('Monday', '06:00', '08:00'),
+	('Monday', '08:00', '10:00'),
+	('Monday', '10:00', '12:00'),
+	('Monday', '12:00', '14:00'),
+	('Monday', '14:00', '16:00'),
+	('Monday', '16:00', '18:00'),
+	('Monday', '18:00', '20:00'),
+	('Monday', '20:00', '22:00'),
+	('Monday', '22:00', '00:00'),
+	('Tuesday', '00:00', '02:00'),
+	('Tuesday', '02:00', '04:00'),
+	('Tuesday', '04:00', '06:00'),
+	('Tuesday', '06:00', '08:00'),
+	('Tuesday', '08:00', '10:00'),
+	('Tuesday', '10:00', '12:00'),
+	('Tuesday', '12:00', '14:00'),
+	('Tuesday', '14:00', '16:00'),
+	('Tuesday', '16:00', '18:00'),
+	('Tuesday', '18:00', '20:00'),
+	('Tuesday', '20:00', '22:00'),
+	('Tuesday', '22:00', '00:00'),
+	('Wednesday', '00:00', '02:00'),
+	('Wednesday', '02:00', '04:00'),
+	('Wednesday', '04:00', '06:00'),
+	('Wednesday', '06:00', '08:00'),
+	('Wednesday', '08:00', '10:00'),
+	('Wednesday', '10:00', '12:00'),
+	('Wednesday', '12:00', '14:00'),
+	('Wednesday', '14:00', '16:00'),
+	('Wednesday', '16:00', '18:00'),
+	('Wednesday', '18:00', '20:00'),
+	('Wednesday', '20:00', '22:00'),
+	('Wednesday', '22:00', '00:00'),
+	('Thursday', '00:00', '02:00'),
+	('Thursday', '02:00', '04:00'),
+	('Thursday', '04:00', '06:00'),
+	('Thursday', '06:00', '08:00'),
+	('Thursday', '08:00', '10:00'),
+	('Thursday', '10:00', '12:00'),
+	('Thursday', '12:00', '14:00'),
+	('Thursday', '14:00', '16:00'),
+	('Thursday', '16:00', '18:00'),
+	('Thursday', '18:00', '20:00'),
+	('Thursday', '20:00', '22:00'),
+	('Thursday', '22:00', '00:00'),
+	('Friday', '00:00', '02:00'),
+	('Friday', '02:00', '04:00'),
+	('Friday', '04:00', '06:00'),
+	('Friday', '06:00', '08:00'),
+	('Friday', '08:00', '10:00'),
+	('Friday', '10:00', '12:00'),
+	('Friday', '12:00', '14:00'),
+	('Friday', '14:00', '16:00'),
+	('Friday', '16:00', '18:00'),
+	('Friday', '18:00', '20:00'),
+	('Friday', '20:00', '22:00'),
+	('Friday', '22:00', '00:00'),
+	('Saturday', '00:00', '02:00'),
+	('Saturday', '02:00', '04:00'),
+	('Saturday', '04:00', '06:00'),
+	('Saturday', '06:00', '08:00'),
+	('Saturday', '08:00', '10:00'),
+	('Saturday', '10:00', '12:00'),
+	('Saturday', '12:00', '14:00'),
+	('Saturday', '14:00', '16:00'),
+	('Saturday', '16:00', '18:00'),
+	('Saturday', '18:00', '20:00'),
+	('Saturday', '20:00', '22:00'),
+	('Saturday', '22:00', '00:00')
+;
+
+INSERT INTO incident_type
+	(description)
+VALUES
+	('Murder'),
+	('Sexual Offences'),
+	('Attempted murder'),
+	('Assault with the intent to inflict grievous bodily harm'),
+	('Common assault'),
+	('Common robbery'),
+	('Robbery with aggravating circumstances'),
+	('Arson'),
+	('Malicious damage to property'),
+	('Burglary at non-residential premises'),
+	('Burglary at residential premises'),
+	('Theft of motor vehicle and motorcycle'),
+	('Theft out of or from motor vehicle'),
+	('Stock-theft'),
+	('Illegal possession of firearms and ammunition'),
+	('Drug-related crime'),
+	('Driving under the influence of alcohol or drugs'),
+	('Sexual offences as result of police action'),
+	('All theft not mentioned elsewhere'),
+	('Commercial crime'),
+	('Shoplifting'),
+	('Carjacking'),
+	('Truck hijacking'),
+	('Robbery at residential premises'),
+	('Robbery at non-residential premises'),
+	('Bank robbery'),
+	('Robbery of cash in transit'),
+	('Culpable homicide'),
+	('Public violence'),
+	('Crimen injuria'),
+	('Neglect and ill-treatment of children'),
+	('Kidnapping')
+;
+
+INSERT INTO incident
+	(date_time, type_id, location_street, location_number, gps_x, gps_y, reported_by_member_id, notes)
+VALUES
+	('2017-01-02 23:15:00', 7, 'Arum Road', 46, -33.82284, 18.48487, 1, '2 gunmen entered over rear wall, one held up residents while the other looked for valuables. Once they had left, the residents pressed the panic button and police arrived on the scene 6 minutes later.')
+;
+
+INSERT INTO patrol_area
+	(description)
+VALUES
+	('Sector 1'),
+	('Sector 2'),
+	('Sector 3')
+;
+
+INSERT INTO patrol
+	(member_id, time_id, area_id)
+VALUES
+	(1, 8, 1),
+	(1, 22, 2)
+;
+
+CREATE VIEW linked_patrols AS SELECT member_id, patrol_time.time_id, patrol_area.area_id, patrol_time.week_day, patrol_time.time_start, patrol_time.time_end, patrol_area.description FROM patrol INNER JOIN patrol_time ON patrol.time_id=patrol_time.time_id INNER JOIN patrol_area ON patrol.area_id=patrol_area.area_id;
+
+
+
+
+
+
+SELECT member.name, member.surname, member.callsign, member.contact_number FROM patrol INNER JOIN member ON patrol.member_id=member.member_id INNER JOIN patrol_time ON patrol.time_id=patrol_time.time_id WHERE patrol_time.time_start < '14:30:00' AND patrol_time.time_end > '14:30:00' AND patrol_time.week_day = 'Sunday';
+
+UPDATE member SET photo = LOAD_FILE('C:\Users\Stuart\Dropbox\UNISA\INF2611 - Visual Programming II\Assignments\photos\stu.jpg') WHERE member_id = 2;
+
+//// done these already above, kept for revision:
+ALTER TABLE member MODIFY contact_number INT NOT NULL;
+ALTER TABLE member MODIFY id_number INT(32) NOT NULL;
+////

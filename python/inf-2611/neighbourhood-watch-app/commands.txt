@@ -1,0 +1,2 @@
+pyrcc4 -py3 tmpresource.qrc -o tmpresource_rc.py
+pyuic4 nw.ui -o nw.py

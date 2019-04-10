@@ -1,0 +1,14 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>road.png</file>
+    <file>add-member.png</file>
+    <file>map.png</file>
+    <file>members.png</file>
+    <file>quit.png</file>
+    <file>man.png</file>
+    <file>incident.png</file>
+    <file>warning.png</file>
+    <file>tvnw-logo.png</file>
+    <file>woman.png</file>
+  </qresource>
+</RCC>
